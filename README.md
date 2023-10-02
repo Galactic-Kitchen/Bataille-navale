@@ -7,7 +7,8 @@ améliorer transmission arguments en tableau aux affichages
 optimiser
 double tableau valeurs pour connaitre joueur 1 et joueur 2
 règles de vérification à faire plus tard
+tableaux multidimensionnels pour simplifier/complexifier ? : ```c int tableau[5][5]```
 
 règles :
 10*10 cases
-```1*5 + 1*4 + 2*3 +1*2
+```1*5 + 1*4 + 2*3 +1*2```
