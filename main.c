@@ -7,7 +7,7 @@ int main (void) {
    /* char colonne_entree, ligne_entree; dans fonction jeu pr optimiser */
     short taille_jeu=3; /* ca sera utilisé plus tard */
 	char statut;
-	int compteur_partie=0, compteur_victoire; /*compteur_partie - compteur_victoire = compteur joueur 2*/
+	int compteur_partie=0, compteur_victoire=0; /*compteur_partie - compteur_victoire = compteur joueur 2*/
 	for (;statut!='q';) {
 		if (statut=='a') {
 			affichage_scores(compteur_partie, compteur_victoire);
@@ -43,7 +43,11 @@ int affichage_scores (c_p, c_v) {
 }
 
 int jeu (void) {
-	int victoire;
+	int victoire, statut=1;
+	char position[9];
+	while (statut==1) {
+		
+	
 	
 	
 	return victoire;
