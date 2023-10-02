@@ -3,30 +3,9 @@
 #define TIRET '-'
 #define SEPARATEUR '|'
 
-int main (void) {
-   /* char colonne_entree, ligne_entree; dans fonction jeu pr optimiser */
-    short taille_jeu=3; /* ca sera utilisé plus tard */
-	char statut;
-	int compteur_partie=0, compteur_victoire=0; /*compteur_partie - compteur_victoire = compteur joueur 2*/
-	nouvelle_partie_question(&statut); /*lancement programme*/
-	for (;statut!='q';) {
-		if (statut=='a') {
-			affichage_scores(compteur_partie, compteur_victoire);
-			nouvelle_partie_question(&statut);
-		}
-		else {
-		compteur_partie++;
-		compteur_victoire+=jeu();
-		nouvelle_partie_question(&statut);
-		}
-	}
-    return EXIT_SUCCESS;
-}
-
-
 int nouvelle_partie_question (char *sortie) {
 	char reponse;
-	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter");
+	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter\n");
 	reponse=getchar();
 	while (reponse!='y' || reponse!='a' || reponse !='q') { /*bug quelque part / reformatage à faire*/
 		printf("réessayer\n");
@@ -37,7 +16,7 @@ int nouvelle_partie_question (char *sortie) {
 }
 
 
-int affichage_scores (c_p, c_v) {
+int affichage_scores (int c_p, int c_v) {
 	printf("nombre de parties jouées, nombre de partie gagnées par joueur 1, nombre de parties gagnées par joueur 2\n %5d %5c %5d %5c %5d", c_p, SEPARATEUR, c_v, SEPARATEUR, c_p-c_v);
 	return EXIT_SUCCESS;
 }
@@ -70,4 +49,24 @@ int affichage (tableau) {
     
     }
 
+}
+
+int main (void) {
+   /* char colonne_entree, ligne_entree; dans fonction jeu pr optimiser */
+    short taille_jeu=3; /* ca sera utilisé plus tard */
+	char statut;
+	int compteur_partie=0, compteur_victoire=0; /*compteur_partie - compteur_victoire = compteur joueur 2*/
+	nouvelle_partie_question(&statut); /*lancement programme*/
+	for (;statut!='q';) {
+		if (statut=='a') {
+			affichage_scores(compteur_partie, compteur_victoire);
+			nouvelle_partie_question(&statut);
+		}
+		else {
+		compteur_partie++;
+		compteur_victoire+=jeu();
+		nouvelle_partie_question(&statut);
+		}
+	}
+    return EXIT_SUCCESS;
 }
