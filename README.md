@@ -11,4 +11,9 @@ tableaux multidimensionnels pour simplifier/complexifier ? : ```c int tableau[5]
 
 règles :
 10*10 cases
-```1*5 + 1*4 + 2*3 +1*2```
+```1*5 + 1*4 + 2*3 +1*2``` ce qui fait donc 17 pour une solution bourrine pour l'initialisation
+
+problèmes :
+[] optimisation oubliée
+[] bug relancer partie
+[] bug gestion des caractères dans jeu()
