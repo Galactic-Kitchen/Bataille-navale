@@ -7,9 +7,11 @@ int nouvelle_partie_question (char *sortie) {
 	char reponse;
 	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter\n");
 	reponse=getchar();
+	getchar();
 	while ((reponse!='y') && (reponse!='a') && (reponse !='q')) { /*bug quelque part / reformatage à faire*/
 		printf("réessayer\n");
 		reponse=getchar();
+		getchar();
 	}
 	*sortie=reponse;
 	return EXIT_SUCCESS;
@@ -26,14 +28,14 @@ int transformation(char colonne) { /* à refaire car c moche*/
 	else if (colonne=='h') { return 7; }
 	else if (colonne=='i') { return 8; }
 	else if (colonne=='j') { return 9; }
-	else return EXIT_FAILURE;
+	else {printf("erreur fonction transformation, %c", colonne); return EXIT_FAILURE;}
 }
 	
 	
 
 
 int affichage_scores (int c_p, int c_v) {
-	printf("nombre de parties jouées, nombre de partie gagnées par joueur 1, nombre de parties gagnées par joueur 2\n %8d %8c %8d %8c %8d \n", c_p, SEPARATEUR, c_v, SEPARATEUR, c_p-c_v);
+	printf("nombre de parties jouées, nombre de partie gagnées par joueur 1, nombre de parties gagnées par joueur 2\n %8d %8c %8d %8c %8d \n", c_p, SEPARATEUR, c_v, SEPARATEUR, c_p-c_v); /* c'est pas joli */
 	return EXIT_SUCCESS;
 }
 
@@ -97,6 +99,7 @@ int jeu (void) {
 		colonne_entree=transformation(getchar());
 		ligne_entree=getchar(); /* insérer vérif si tir déjà fait un jour*/
 		getchar();/* récupère l'espace, marchera que sous linux*/
+		getchar();/*now works under windows*/
 		printf("tir en %c%c\n", colonne_entree, ligne_entree);
 		if (position2[colonne_entree][ligne_entree]=='x') {
 			printf("Touché !\n");
@@ -119,6 +122,7 @@ int jeu (void) {
 		colonne_entree=transformation(getchar());
 		ligne_entree=getchar(); /* insérer vérif si tir déjà fait un jour*/
 		getchar();/* récupère l'espace, marchera que sous linux*/
+		getchar();/*now works under windows*/
 		printf("tir en %c%c\n", colonne_entree, ligne_entree);
 		if (position1[colonne_entree][ligne_entree]=='x') {
 			printf("Touché !\n");
