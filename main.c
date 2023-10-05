@@ -75,8 +75,13 @@ int jeu (void) {
 		/* création position des bateaux*/
 		printf("insérer la position des bateaux séparés par des espaces seulement du joueur 1 en une fois");
 		for (i=0;i<17;i++) {
-			colonne_entree=transformation(getchar());
+			//colonne_entree=transformation(getchar());
+			colonne_entree=getchar();
+			printf("anti erreur entree %c", colonne_entree);
+			colonne_entree=transformation(colonne_entree);
+			printf("anti erreur colonne transformation %c", colonne_entree);
 			ligne_entree=getchar();
+			printf("anti erreur ligne_entree %c", ligne_entree);
 			getchar(); /*espace*/
 			position1[colonne_entree][ligne_entree]='x';
 		}
