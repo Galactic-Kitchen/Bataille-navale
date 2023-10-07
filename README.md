@@ -13,6 +13,7 @@ faire en sorte que quand un bateau coule ca l'affiche quand j'aurai fini le rest
 utilisation fonctions pour placement bateaux et variables nb de bateaux ?
 rempler printf affichate tableau par dire tableau ennemi ou le notre
 ligne entree -> commencer à compter à partir de 1
+génération aléatoire position bateau
 
 règles :
 10*10 cases

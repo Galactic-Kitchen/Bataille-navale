@@ -2,6 +2,10 @@
 #include <stdio.h>
 #define TIRET '-'
 #define SEPARATEUR '|'
+#define NOMBRE_PORTE_AVIONS 1
+#define NOMBRE_CUIRASSES 1
+#define NOMBRE_CROISEURS 2
+#define NOMBRE_DESTROYERS 1
 
 int nouvelle_partie_question (char *sortie) {
 	char reponse;
@@ -17,29 +21,33 @@ int nouvelle_partie_question (char *sortie) {
 	return EXIT_SUCCESS;
 }
 
-int transformation(char colonne) { /* à refaire car c moche*/
-	if (colonne=='a') { return 0; }
-	else if (colonne=='b') { return 1; }
-	else if (colonne=='c') { return 2; }
-	else if (colonne=='d') { return 3; }
-	else if (colonne=='e') { return 4; }
-	else if (colonne=='f') { return 5; }
-	else if (colonne=='g') { return 6; }
-	else if (colonne=='h') { return 7; }
-	else if (colonne=='i') { return 8; }
-	else if (colonne=='j') { return 9; }
-	else {printf("erreur fonction transformation, %c", colonne); return EXIT_FAILURE;}
-}
-	
-	
-
 
 int affichage_scores (int c_p, int c_v) {
 	printf("nombre de parties jouées, nombre de partie gagnées par joueur 1, nombre de parties gagnées par joueur 2\n %8d %8c %8d %8c %8d \n", c_p, SEPARATEUR, c_v, SEPARATEUR, c_p-c_v); /* c'est pas joli */
 	return EXIT_SUCCESS;
 }
 
+int bateau () {
+	//fonction qui place les bateaux aléatoirement, pas oublier de verif pas de superposition et dépassement tableaux
+	return EXIT_SUCCESS;
+}
 
+int initialisation (char *tableau[10][10]) { // fonction qui gère le placement des bateaux aléatoirement
+	short i;
+	for (i=0;i<NOMBRE_PORTE_AVIONS;i++) {
+		bateau(*tableau, 5);
+	}
+	for (i=0;i<NOMBRE_CUIRASSES;i++) {
+		bateau(*tableau, 4);
+	}
+	for (i=0;i<NOMBRE_CROISEURS;i++) {
+		bateau(*tableau, 3);
+	}
+	for (i=0;i<NOMBRE_DESTROYERS;i++) {
+		bateau(*tableau, 2);
+	}
+	return EXIT_SUCCESS;
+}
 
 int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*/
     int l,c;
@@ -66,10 +74,24 @@ int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*
 	return EXIT_SUCCESS;
 }
 
+int verif (char tableau[10][10], int *statut) {
+	short presence_x=0, i, j;
+	for (i=0;i<10;i++) {
+		for (j=0;j<10;j++) {
+			if (tableau[i][j]=='x') {
+				short presence_x =1;
+			}
+		}
+	}
+	if (presence_x==0) {
+		*statut=3;
+	}
+	return EXIT_SUCCESS;
+}
 
 int jeu (void) {
 	short i,relation;
-	int victoire, statut=1;
+	int victoire=0, statut=1;
 	char colonne_entree, ligne_entree;
 	char position1[10][10]={}; /* x: bateau présent non découvert, o : coup dans l'eau, 0 (et non '0') : absence de bateau, H : bateau touché découvert*/
 	char position2[10][10]={};
@@ -142,6 +164,19 @@ int jeu (void) {
 			return EXIT_FAILURE;
 		}
 		/* fin tour joueur 2*/
+		verif(position2, &statut);
+		i=statut;
+		verif(position1, &statut);
+		if (statut==3) {
+			if (i==3) {
+				victoire++;
+				printf("Le joueur 1 a gagné cette partie\n");
+			}
+			else {
+				printf("Le joueur 2 a gagné cette partie\n");
+			}
+		}
+		/*fin verif fin de partie*/
 	}
 		
 	return victoire;
