@@ -2,6 +2,7 @@
 #include <stdio.h>
 #define TIRET '-'
 #define SEPARATEUR '|'
+/*a1 a2 a3 a4 a5 a6 a7 a8 a9 b0 b1 b2 b3 b4 b5 b6 b7*/
 
 int transformation(char colonne) { /* à refaire car c moche*/
 	if (colonne=='a') { return 0; }
@@ -20,7 +21,7 @@ int transformation(char colonne) { /* à refaire car c moche*/
 int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*/
     int l,c;
 	/* affichage avec tableau 2 dimensions et joueur=num joueur et donc quoi afficher, a : ami, b : ennemie*/
-	printf("affichage tableau \n");
+	printf("%s",(relation=='a')?"Affichage de votre grille\n":"Affichage du radar de la grille ennemie\n");
     for (l=0;l<10;l++) {
 		for (c=0;c<10;c++) {
 			if (tableau[l][c]=='x') {
@@ -47,23 +48,23 @@ int jeu (void) {
 	short i,j;
 	int victoire, statut=1;
 	char colonne_entree, ligne_entree;
-	char position1[10][10]; /* x: bateau présent non découvert, o : coup dans l'eau, 0 (et non '0') : absence de bateau, H : bateau touché découvert*/
-	char position2[10][10];
+	char position1[10][10]={}; /* x: bateau présent non découvert, o : coup dans l'eau, 0 (et non '0') : absence de bateau, H : bateau touché découvert*/
+	char position2[10][10]={};
 	while (statut==1) {
 		/* création position des bateaux*/
 		printf("insérer la position des bateaux séparés par des espaces seulement du joueur 1 en une fois");
 		for (i=0;i<17;i++) {
-			colonne_entree=transformation(getchar());
-			ligne_entree=getchar();
+			colonne_entree=(transformation(getchar()))%10;
+			ligne_entree=getchar()-'0';
 			getchar(); /*espace*/
-			position1[colonne_entree][ligne_entree-'0']='x';
+			position1[colonne_entree][ligne_entree]='x';
 		}
 		printf("insérer la position des bateaux séparés par des espaces seulement du joueur 2 en une fois");
 		for (i=0;i<17;i++) {
-			colonne_entree=transformation(getchar());
-			ligne_entree=getchar();
+			colonne_entree=(transformation(getchar()))%10;
+			ligne_entree=getchar()-'0';
 			getchar(); /*espace*/
-			position2[colonne_entree][ligne_entree-'0']='x';
+			position2[colonne_entree][ligne_entree]='x';
 		}
 		statut=2;
 	}
@@ -77,8 +78,7 @@ int jeu (void) {
 		colonne_entree=transformation(getchar());
 		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour*/
 		getchar();/* récupère l'espace, marchera que sous linux*/
-		getchar();/*now works under windows*/
-		printf("tir en a : %c b : %c\n", colonne_entree, ligne_entree);
+		printf("tir en a : %c b : %c\n", colonne_entree-'0'+'a', ligne_entree+'0');
 		if (position2[colonne_entree][ligne_entree]=='x') {
 			printf("Touché !\n");
 			position2[colonne_entree][ligne_entree]='H';
@@ -88,7 +88,7 @@ int jeu (void) {
 			position2[colonne_entree][ligne_entree]='o';
 		}
 		else {
-			printf("c %c, e %c", colonne_entree, ligne_entree); return EXIT_FAILURE;
+			printf("c %d, e %d, k %d", colonne_entree, ligne_entree, position2[colonne_entree][ligne_entree]); return EXIT_FAILURE;
 		}
 		/* fin tour joueur 1*/
 		printf("tour de joueur 2\n");

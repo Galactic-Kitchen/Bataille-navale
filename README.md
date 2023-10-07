@@ -10,6 +10,8 @@ règles de vérification à faire plus tard
 tableaux multidimensionnels pour simplifier/complexifier ? : ```c int tableau[5][5]```
 vérif positionnement bateau
 faire en sorte que quand un bateau coule ca l'affiche quand j'aurai fini le reste et surtout les vérifs
+utilisation fonctions pour placement bateaux et variables nb de bateaux ?
+rempler printf affichate tableau par dire tableau ennemi ou le notre
 
 règles :
 10*10 cases
