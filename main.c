@@ -7,6 +7,8 @@
 #define NOMBRE_CROISEURS 2
 #define NOMBRE_DESTROYERS 1
 
+#include <time.h>
+
 int nouvelle_partie_question (char *sortie) {
 	char reponse;
 	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter\n");
@@ -27,24 +29,43 @@ int affichage_scores (int c_p, int c_v) {
 	return EXIT_SUCCESS;
 }
 
-int bateau () {
+int bateau (char tableau[10][10], int taille, int aleatoire) {
 	//fonction qui place les bateaux aléatoirement, pas oublier de verif pas de superposition et dépassement tableaux
+	int valeur_depart1, valeur_depart2;
+	short i, orientation;
+	srand(time(NULL)+aleatoire);
+	valeur_depart1=rand()%(10-taille);
+    srand(time(NULL)+1+aleatoire);
+	valeur_depart2=(rand()%10)-1;
+    srand(time(NULL)+2+aleatoire);
+	orientation=(rand()%2);
+	if (orientation==1) {
+		for (i = 0; i < taille; i++) {
+			tableau [valeur_depart2][valeur_depart1+i]='x'; /*vers le bas*/
+		}
+		}
+	else {
+		for (i = 0; i < taille; i++) {
+			tableau [valeur_depart1+i][valeur_depart2]='x'; /*vers le haut*/
+		}
+		}
 	return EXIT_SUCCESS;
 }
 
-int initialisation (char *tableau[10][10]) { // fonction qui gère le placement des bateaux aléatoirement
+
+int initialisation (char tableau[10][10], int alea) { // fonction qui gère le placement des bateaux aléatoirement
 	short i;
 	for (i=0;i<NOMBRE_PORTE_AVIONS;i++) {
-		bateau(*tableau, 5);
+		bateau(tableau, 5, (time(NULL)%42)*alea);
 	}
 	for (i=0;i<NOMBRE_CUIRASSES;i++) {
-		bateau(*tableau, 4);
+		bateau(tableau, 4, (time(NULL)%69)*alea);
 	}
 	for (i=0;i<NOMBRE_CROISEURS;i++) {
-		bateau(*tableau, 3);
+		bateau(tableau, 3, (time(NULL)%420)*alea);
 	}
 	for (i=0;i<NOMBRE_DESTROYERS;i++) {
-		bateau(*tableau, 2);
+		bateau(tableau, 2, (time(NULL)%666)*alea);
 	}
 	return EXIT_SUCCESS;
 }
@@ -79,7 +100,7 @@ int verif (char tableau[10][10], int *statut) {
 	for (i=0;i<10;i++) {
 		for (j=0;j<10;j++) {
 			if (tableau[i][j]=='x') {
-				short presence_x =1;
+				presence_x =1;
 			}
 		}
 	}
@@ -91,7 +112,7 @@ int verif (char tableau[10][10], int *statut) {
 
 int jeu (void) {
 	short i,relation;
-	int victoire=0, statut=1;
+	int victoire=0, statut=0;
 	char colonne_entree, ligne_entree;
 	char position1[10][10]={}; /* x: bateau présent non découvert, o : coup dans l'eau, 0 (et non '0') : absence de bateau, H : bateau touché découvert*/
 	char position2[10][10]={};
@@ -113,6 +134,9 @@ int jeu (void) {
 		}
 		statut=2;
 	}
+	initialisation(position1, 5);
+    initialisation(position2, 7);
+	statut=2;
 	while (statut==2) {
 		printf("tour de joueur 1\n");
 		relation='a';

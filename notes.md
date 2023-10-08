@@ -12,6 +12,7 @@ rempler printf affichate tableau par dire tableau ennemi ou le notre
 ligne entree -> commencer à compter à partir de 1
 génération aléatoire position bateau
 makefile
+do while verif placement bateaux
 
 règles :
 10*10 cases
@@ -23,3 +24,7 @@ problèmes :
 [] optimisation oubliée
 [] bug relancer partie, fait
 [] bug gestion des caractères dans jeu()
+
+manipuler des tableaux sans pointeurs dans des fonctions parait extrêmement chelou
+
+go surcharger la fonction verif lol

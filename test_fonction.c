@@ -3,6 +3,8 @@
 #define TIRET '-'
 #define SEPARATEUR '|'
 
+#include <time.h>
+
 int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*/
 	/*short Taille_jeu=3;*/
     int l,c,t;
@@ -43,10 +45,31 @@ int transformation(char colonne) { /* à refaire car c moche*/
 	else return EXIT_FAILURE;
 }
 
+int verif (char tableau[10][10], int *statut) {
+	short presence_x=0, i, j;
+	for (i=0;i<10;i++) {
+		for (j=0;j<10;j++) {
+			if (tableau[i][j]=='x') {
+				presence_x =1;
+			}
+		}
+	}
+	printf("%d k", presence_x);
+	if (presence_x==0) {
+		*statut=3;
+	}
+	return EXIT_SUCCESS;
+}
+
 int main (void) {
 	char test[10][10]={'x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'};
+	char test1[10][10]={};
+	int statut=5;
+	/*bateau(test1, 6);
 	char ami='a';
-	affichage(test,ami);
+	affichage(test1,ami);*/
+	verif(test, &statut);
+	printf("%d", statut);
 	return EXIT_SUCCESS;
 }
 	
