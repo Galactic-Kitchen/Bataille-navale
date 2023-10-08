@@ -28,3 +28,7 @@ problèmes :
 manipuler des tableaux sans pointeurs dans des fonctions parait extrêmement chelou
 
 go surcharger la fonction verif lol
+polymorphisme/surchage/typedef struct
+
+voir installer et utiliser make sur windows
+faire une fonction récursive parce que pourquoi pas
