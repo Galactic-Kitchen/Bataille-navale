@@ -30,5 +30,5 @@ manipuler des tableaux sans pointeurs dans des fonctions parait extrêmement che
 go surcharger la fonction verif lol
 polymorphisme/surchage/typedef struct
 
-voir installer et utiliser make sur windows
+voir installer et utiliser make sur windows -> installer cmake pour multisystème
 faire une fonction récursive parce que pourquoi pas
