@@ -32,3 +32,10 @@ polymorphisme/surchage/typedef struct
 
 voir installer et utiliser make sur windows -> installer cmake pour multisystème
 faire une fonction récursive parce que pourquoi pas
+
+utilisation couleur dans fonction affichage selon type cases, multi plateforme a l'air compliqué
+
+options lancement :
+
+-à deux ou tout seul
+-toi qui places ou aléatoire
