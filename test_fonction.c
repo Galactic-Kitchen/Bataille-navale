@@ -5,11 +5,19 @@
 
 #include <time.h>
 
+
 int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*/
-	/*short Taille_jeu=3;*/
-    int l,c,t;
+    int l,c;
 	/* affichage avec tableau 2 dimensions et joueur=num joueur et donc quoi afficher, a : ami, b : ennemie*/
-	printf("affichage tableau \n");
+	printf("%s",(relation=='a')?"\nAffichage de votre grille :\n":"Affichage du radar de la grille ennemie :\n");
+	for (l=0;l<10;l++) {
+		printf("%c\t %c ", 'a'+l, SEPARATEUR);
+	}
+	printf("\n--");
+	for (l=0;l<10;l++) {
+		printf("-------+");
+	}
+	printf("\n");
     for (l=0;l<10;l++) {
 		for (c=0;c<10;c++) {
 			if (tableau[l][c]=='x') {
@@ -65,11 +73,10 @@ int main (void) {
 	char test[10][10]={'x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x','x'};
 	char test1[10][10]={};
 	int statut=5;
-	/*bateau(test1, 6);
+	//bateau(test1, 6);
 	char ami='a';
-	affichage(test1,ami);*/
-	verif(test, &statut);
-	printf("%d", statut);
+	affichage(test,ami);
+	/*verif(test, &statut);
+	printf("%d", statut);*/
 	return EXIT_SUCCESS;
-}
-	
+}	

@@ -74,6 +74,14 @@ int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*
     int l,c;
 	/* affichage avec tableau 2 dimensions et joueur=num joueur et donc quoi afficher, a : ami, b : ennemie*/
 	printf("%s",(relation=='a')?"\nAffichage de votre grille :\n":"Affichage du radar de la grille ennemie :\n");
+	for (l=0;l<10;l++) {
+		printf("%c\t %c ", 'a'+l, SEPARATEUR);
+	}
+	printf("\n--");
+	for (l=0;l<10;l++) {
+		printf("-------+");
+	}
+	printf("\n");
     for (l=0;l<10;l++) {
 		for (c=0;c<10;c++) {
 			if (tableau[l][c]=='x') {
@@ -145,8 +153,10 @@ int jeu (void) {
 		affichage(position2, relation);
 		printf("Entrer la colonne et la ligne du tir à effectuer\n");
 		colonne_entree=getchar()-'a';
-		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour*/
+		scanf("%d", &ligne_entree);
+		ligne_entree-=1; /* passage de compter a partir de 1 a compter à partir de 0*/
 		getchar();/* récupère l'espace, marchera que sous linux*/
+		getchar();
 		printf("Tir en a : %c b : %d\n", colonne_entree+'a', ligne_entree);
 		if (position2[colonne_entree][ligne_entree]=='x') {
 			printf("Touché !\n");
@@ -170,8 +180,10 @@ int jeu (void) {
 		affichage(position1, relation);
 		printf("Entrer la colonne et la ligne du tir à effectuer\n");
 		colonne_entree=getchar()-'a';
-		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour*/
+		scanf("%d", &ligne_entree);
+		ligne_entree-=1; /* passage de compter a partir de 1 a compter à partir de 0*/
 		getchar();/* récupère l'espace, marchera que sous linux, ou sur windows jsp*/
+		getchar();
 		printf("Tir en %c%c\n", colonne_entree, ligne_entree);
 		if (position1[colonne_entree][ligne_entree]=='x') {
 			printf("Touché !\n");
