@@ -9,7 +9,7 @@
 #include <time.h>
 
 int bateau (char tableau[10][10], int taille, int aleatoire) {
-	//fonction qui place les bateaux aléatoirement, pas oublier de verif pas de superposition et dépassement tableaux
+	/*fonction qui place les bateaux aléatoirement, pas oublier de verif pas de superposition et dépassement tableaux, pas dépassement du tableau vérification inhérente*/
 	int valeur_depart1, valeur_depart2;
 	short i, orientation;
 	srand(time(NULL)+aleatoire);

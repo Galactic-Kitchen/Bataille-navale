@@ -25,7 +25,11 @@ int affichage_scores (int c_p, int c_v) {
 int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*/
     int l,c;
 	/* affichage avec tableau 2 dimensions et joueur=num joueur et donc quoi afficher, a : ami, b : ennemie*/
-	printf("%s",(relation=='a')?"\nAffichage de votre grille :\n":"Affichage du radar de la grille ennemie :\n");
+	printf("\n%s\n",(relation=='a')?"Affichage de votre grille :":"Affichage du radar de la grille ennemie :");
+	for (l=0;l<10;l++) {
+		printf(" %c\t %c", 'a'+l, SEPARATEUR);
+	}
+	printf("\n");
     for (l=0;l<10;l++) {
 		for (c=0;c<10;c++) {
 			if (tableau[l][c]=='x') {

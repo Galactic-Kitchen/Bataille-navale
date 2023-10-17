@@ -23,19 +23,19 @@ int jeu (void) {
 		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour*/
 		getchar();/* récupère l'espace, marchera que sous linux*/
 		printf("Tir en a : %c b : %d\n", colonne_entree+'a', ligne_entree);
-		if (position2[colonne_entree][ligne_entree]=='x') {
+		if (position2[ligne_entree][colonne_entree]=='x') {
 			printf("Touché !\n");
-			position2[colonne_entree][ligne_entree]='H';
+			position2[ligne_entree][colonne_entree]='H';
 		}
-		else if (position2[colonne_entree][ligne_entree]==0) {
+		else if (position2[ligne_entree][colonne_entree]==0) {
 			printf("Raté !\n");
-			position2[colonne_entree][ligne_entree]='o';
+			position2[ligne_entree][colonne_entree]='o';
 		}
-        else if ((position1[colonne_entree][ligne_entree]=='o')||(position1[colonne_entree][ligne_entree]=='H')) {
+        else if ((position1[ligne_entree][colonne_entree]=='o')||(position1[ligne_entree][colonne_entree]=='H')) {
 		printf("T'as tiré à un endroit où t'avais déjà tiré...\n");
         }
 		else {
-			printf("c %d, e %d, k %d", colonne_entree, ligne_entree, position2[colonne_entree][ligne_entree]); return EXIT_FAILURE;
+			printf("c %d, e %d, k %d", colonne_entree, ligne_entree, position2[ligne_entree][colonne_entree]); return EXIT_FAILURE;
 		}
 		/* fin tour joueur 1*/
 		printf("tour de joueur 2\n");
@@ -45,18 +45,18 @@ int jeu (void) {
 		affichage(position1, relation);
 		printf("Entrer la colonne et la ligne du tir à effectuer\n");
 		colonne_entree=getchar()-'a';
-		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour*/
+		ligne_entree=getchar()-'0'; /* insérer vérif si tir déjà fait un jour pr l'en empêcher peut-être*/
 		getchar();/* récupère l'espace, marchera que sous linux, ou sur windows jsp*/
 		printf("Tir en %c%c\n", colonne_entree, ligne_entree);
-		if (position1[colonne_entree][ligne_entree]=='x') {
+		if (position1[ligne_entree][colonne_entree]=='x') {
 			printf("Touché !\n");
-			position1[colonne_entree][ligne_entree]='H';
+			position1[ligne_entree][colonne_entree]='H';
 		}
-		else if (position1[colonne_entree][ligne_entree]==0) {
+		else if (position1[ligne_entree][colonne_entree]==0) {
 			printf("Raté !\n");
-			position1[colonne_entree][ligne_entree]='o';
+			position1[ligne_entree][colonne_entree]='o';
 		}
-        else if ((position1[colonne_entree][ligne_entree]=='o')||(position1[colonne_entree][ligne_entree]=='H')) {
+        else if ((position1[ligne_entree][colonne_entree]=='o')||(position1[ligne_entree][colonne_entree]=='H')) {
 			printf("T'as tiré à un endroit où t'avais déjà tiré...\n");
 		}
 		else {
