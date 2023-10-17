@@ -39,3 +39,7 @@ options lancement :
 
 -à deux ou tout seul
 -toi qui places ou aléatoire
+
+
+inverser [colonne_entree] et [ligne_entree],
+chaque sous liste représente une ligne et non une colonne
