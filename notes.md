@@ -2,21 +2,21 @@ Voir pour jouer contre ordi et taille tableau jeu variable éventuellement go ou
 Finir fonction affichage
 améliorer transmission arguments en tableau aux affichages
 optimiser
-double tableau valeurs pour connaitre joueur 1 et joueur 2
+double tableau valeurs pour connaitre joueur 1 et joueur 2, check
 règles de vérification à faire plus tard
-tableaux multidimensionnels pour simplifier/complexifier ? : ```c int tableau[5][5]```
-vérif positionnement bateau
-faire en sorte que quand un bateau coule ca l'affiche quand j'aurai fini le reste et surtout les vérifs
-utilisation fonctions pour placement bateaux et variables nb de bateaux ?
-rempler printf affichate tableau par dire tableau ennemi ou le notre
+tableaux multidimensionnels pour simplifier/complexifier ? : ```c int tableau[5][5]```, check
+vérif positionnement bateau, vérif de sortie
+faire en sorte que quand un bateau coule ca l'affiche quand j'aurai fini le reste et surtout les vérifs, c bon ?
+utilisation fonctions pour placement bateaux et variables nb de bateaux ?, check
+rempler printf affichate tableau par dire tableau ennemi ou le notre, check
 ligne entree -> commencer à compter à partir de 1
 génération aléatoire position bateau
-makefile
+makefile, check
 do while verif placement bateaux
 
 règles :
 10*10 cases
-```1*5 + 1*4 + 2*3 +1*2``` ce qui fait donc 17 pour une solution bourrine pour l'initialisation
+```1*5 + 1*4 + 2*3 +1*2``` ce qui fait donc 17 pour une solution bourrine pour l'initialisation, amélioré
 
 faire attention utiliser int(0) et pas char(0) dans ligne tableau
 
@@ -30,7 +30,7 @@ manipuler des tableaux sans pointeurs dans des fonctions parait extrêmement che
 go surcharger la fonction verif lol
 polymorphisme/surchage/typedef struct
 
-voir installer et utiliser make sur windows -> installer cmake pour multisystème
+voir installer et utiliser make sur windows -> installer cmake pour multisystème à voir
 faire une fonction récursive parce que pourquoi pas
 
 utilisation couleur dans fonction affichage selon type cases, multi plateforme a l'air compliqué
@@ -41,5 +41,7 @@ options lancement :
 -toi qui places ou aléatoire
 
 
-inverser [colonne_entree] et [ligne_entree],
+inverser [colonne_entree] et [ligne_entree], c bon
 chaque sous liste représente une ligne et non une colonne
+
+type def struct pour le fun un jour
