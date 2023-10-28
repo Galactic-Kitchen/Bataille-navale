@@ -26,11 +26,17 @@ int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*
     int l,c;
 	/* affichage avec tableau 2 dimensions et joueur=num joueur et donc quoi afficher, a : ami, b : ennemie*/
 	printf("\n%s\n",(relation=='a')?"Affichage de votre grille :":"Affichage du radar de la grille ennemie :");
+	printf(" \t%c", SEPARATEUR);
 	for (l=0;l<10;l++) {
-		printf(" %c\t %c", 'a'+l, SEPARATEUR);
+		printf(" %c\t%c", 'a'+l, SEPARATEUR);
 	}
 	printf("\n");
+	for (l=0;l<=10;l++) {
+		printf("+-------");
+	}
+	printf("+\n");
     for (l=0;l<10;l++) {
+		printf("%d\t%c", l+1, SEPARATEUR);
 		for (c=0;c<10;c++) {
 			if (tableau[l][c]=='x') {
 				printf("%c\t",(relation=='a')?'x':' ');
@@ -44,9 +50,13 @@ int affichage (char tableau[10][10], char relation) { /*probablement un bug ici*
 			else if  (tableau[l][c]=='o') {
 				printf("O\t");
 			}
-			printf(" %c ", SEPARATEUR);
+			printf("%c ", SEPARATEUR);
 		}
 		printf("\n");
+		for (c=0;c<10;c++) {
+			printf("+-------");
+		}
+		printf("+-------+\n");
 	}
 	return EXIT_SUCCESS;
 }
