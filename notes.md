@@ -35,13 +35,34 @@ faire une fonction récursive parce que pourquoi pas
 
 utilisation couleur dans fonction affichage selon type cases, multi plateforme a l'air compliqué
 
-options lancement :
-
--à deux ou tout seul
--toi qui places ou aléatoire
 
 
 inverser [colonne_entree] et [ligne_entree], c bon
 chaque sous liste représente une ligne et non une colonne
 
-type def struct pour le fun un jour
+
+branche pour options :
+option 1 : --help/-h affiche l'équivalent du readme
+readme
+option 2 : choix du positionnement, aléatoire par défaut, ‐-manuel/-m --hasard/-h
+option 3 : 1v1 or 1vsia (hasard striking ia avec verif cout pas déjà fait et probablement un jour indice de predictabilite des coups basés sur les coups deja effectues sinon random)
+--ia/ia --e/ennemi
+
+typedef struct var :
+liste positions
+hp probablement
+en vie ou pas
+pas
+
+var bateaux en vie probablement plus tard et fonction s'appliquant aux typedzf struct pour vérifier leur vie plutot que parcours du bateau
+bateau
+
+tester cmake
+
+dans affichage afficher pour soi les bateaux en vie et coulés ainsi que types
+dans affichage pour ennemi afficher bateaux coulés et type
+
+Afficher quand un bateau est coulé : probablement fonction d'affichage séparée 
+
+
+possibilité de faire plusieurs ui.c avec différents languages vu que tt les printf sont à l'intérieur
