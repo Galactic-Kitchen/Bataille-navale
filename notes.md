@@ -35,6 +35,7 @@ faire une fonction récursive parce que pourquoi pas
 
 utilisation couleur dans fonction affichage selon type cases, multi plateforme a l'air compliqué
 
+affichage sur des carrés plutot que sur des rectangles
 
 
 inverser [colonne_entree] et [ligne_entree], c bon
