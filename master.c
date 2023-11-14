@@ -28,7 +28,7 @@ void quitter (void) {
 }
 
 int changement_options (short *ennemi, short *placement ) {
-	print_changement_options(ennemi, placement);
+	print_changement_options(*ennemi, *placement);
 	if (getchar()=='e') {
 		*ennemi=(*ennemi==0)?1:0;
 		if (getchar()=='p') {
@@ -128,7 +128,7 @@ int main (int argc, char** argv) {
 	nouvelle_partie_question(&statut); /*lancement programme*/
 	for (;statut!='\0';) {
 		if (statut=='a') {
-			affichage_scores(compteur_partie, compteur_victoire, ordi);
+			affichage_scores(compteur_partie, compteur_victoire);
 			
 		}
 		else if (statut=='q') {
