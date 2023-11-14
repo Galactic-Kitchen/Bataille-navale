@@ -51,5 +51,8 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-#vs code
+# Visual Studio Code
 .vscode/
+
+# Debug
+*debug_info.txt

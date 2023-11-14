@@ -43,11 +43,10 @@ chaque sous liste représente une ligne et non une colonne
 
 
 branche pour options :
-option 1 : --help/-h affiche l'équivalent du readme
-readme
+option 1 : --help/-h/-? affiche l'équivalent du readme
 option 2 : choix du positionnement, aléatoire par défaut, ‐-manuel/-m --hasard/-h
 option 3 : 1v1 or 1vsia (hasard striking ia avec verif cout pas déjà fait et probablement un jour indice de predictabilite des coups basés sur les coups deja effectues sinon random)
---ia/ia --e/ennemi
+-ia/--ia -e/--ennemi
 
 typedef struct var :
 liste positions
@@ -67,3 +66,12 @@ Afficher quand un bateau est coulé : probablement fonction d'affichage séparé
 
 
 possibilité de faire plusieurs ui.c avec différents languages vu que tt les printf sont à l'intérieur
+
+menu pour choisir les options au début
+modifier affichage points si bataille contre ia
+fonction pour quitter : exit
+remplacer return exit failure par exit(code) et définir des codes d'erreur / faire une analyse des code de retour des fonctions pour mettre des return exit_failure qui soient corrects
+
+améliorer makefile
+finir implémentation debug makefile avec -aux-info fichier pour liste des fonctions
+ajouter ifnotdef dans header

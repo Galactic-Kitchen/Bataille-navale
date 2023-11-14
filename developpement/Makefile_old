@@ -1,0 +1,56 @@
+CC = gcc
+NAME = bataille_navale
+FLAGS_ANSI = -ansi -pedantic
+FLAGS_NAME = -o
+FLAGS_OBJ = -c
+FLAGS_DEBUG = -g -aux-info 
+NAME_DEBUG = debug_info.txt
+
+
+${NAME}.exe : master.o jeu.o ui.o
+	${CC} ${FLAGS_NAME} $@.exe $^
+
+jeu.o: jeu.c
+	@${CC} ${FLAGS_OBJ} $<
+
+ui.o : ui.c
+	@${CC} ${FLAGS_OBJ} $<
+
+master.o : master.c
+	@${CC} ${FLAGS_OBJ} $<
+	
+run :
+	./${NAME}.exe
+
+debug : %_debug.o
+	clean
+	@${CC} ${FLAGS_DEBUG} ${FLAGS_NAME} ${NAME}_debug.exe $^
+	
+rebuild : clean
+	make
+
+clean : clean_obj clean_debug mrproper
+
+clean_obj :
+	@rm -f *.o
+
+clean_debug :
+	@rm -f *debug_info.txt
+
+mrproper :
+	@rm -f ${NAME}.exe
+
+ansic : master_ansi.o jeu_ansi.o ui_ansi.o
+	@${CC} ${FLAGS_NAME} ${NAME}.exe $^
+
+jeu_ansi.o: jeu.c
+	@${CC} ${FLAGS_OBJ} ${FLAGS_ANSI} $<
+
+ui_ansi.o : ui.c
+	@${CC} ${FLAGS_OBJ} ${FLAGS_ANSI} $<
+
+master_ansi.o : master.c
+	@${CC} ${FLAGS_OBJ} ${FLAGS_ANSI} $<
+
+%_debug.o : %.c
+	@${CC} ${FLAGS_OBJ} ${FLAGS_DEBUG} $@_${NAME_DEBUG} ${FLAGS_NAME} $@ $<

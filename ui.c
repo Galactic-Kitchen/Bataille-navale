@@ -1,13 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
-#define SEPARATEUR '|'
+
+#include "bataille_navale_h.h"
+
+int aide () {
+	printf("\tJeu de Bataille Navale.\n");
+	printf("Jeu de bataille navale écrit en C.\n");
+	printf("Différents options sont disponibles :\n");
+	printf("-?/--help/-h : affiche l'aide\n");
+	printf("-m/--manuel & -h/--hasard : choix du positionnement des bateaux : aléatoire ou manuel (pas encore implémenté)\n");
+	printf("-i/--ia & -e/--ennemi : permet de choisir de jouer contre un algorithme ou contre un ami (amitié optionnelle)(pas encore implémenté)\n");
+	return EXIT_SUCCESS;
+}
+int print_victoire(int nb) {
+	printf("Le joueur %d a gagné cette partie\n",nb);
+	return EXIT_SUCCESS;
+}
+
+int print_changement_options(short ennemi, short placement) {
+	printf("les options actuelles sont :\n");
+	printf("Placement des bateaux : %s\n", (placement==1)?"Placement manuel":"Placement automatique aléatoire");
+	printf("Ennemi affronté %s\n", (ennemi==1)?"Affronter l'ordinateur":"Affronter un ami (amitié optionelle)");
+	printf("Entrer e en minuscule pour basculer l'ordinateur, entrer p pour basculer le placement, entrer 3 caractères en tout impérativement");
+	return EXIT_SUCCESS;
+}
 
 int nouvelle_partie_question (char *sortie) {
 	char reponse;
-	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter\n");
+	printf("nouvelle partie ?\na : afficher les scores, y : lancer une nouvelle partie, q : quitter, o : changer les options\n");
 	reponse=getchar();
 	getchar();
-	while ((reponse!='y') && (reponse!='a') && (reponse !='q')) { /*bug quelque part / reformatage à faire*/
+	while ((reponse!='y') && (reponse!='a') && (reponse !='q') && (reponse!='o')) { /*bug quelque part / reformatage à faire*/
 		printf("réessayer\n");
 		reponse=getchar();
 		getchar();

@@ -1,17 +1,36 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define NOMBRE_PORTE_AVIONS 1
-#define NOMBRE_CUIRASSES 1
-#define NOMBRE_CROISEURS 2
-#define NOMBRE_DESTROYERS 1
+#include "bataille_navale_h.h"
+
 
 #include <time.h>
+
+
+
+int demande_placement(char bateau1[10][10], char bateau2[10][10]) {
+	short i, temp1, temp2;
+	printf("Veuillez entrer successivement la position des bateaux");
+	for (i=0;i<10;i++) {
+		temp1=getchar()-'a';
+		scanf("%d", &temp2);
+		getchar();
+		temp2--;
+		bateau1[temp1][temp2]=BATEAU_NON_TOUCHE;
+		temp1=getchar()-'a';
+		scanf("%d", &temp2);
+		getchar();
+		temp2--;
+		bateau2[temp1][temp2]=BATEAU_NON_TOUCHE;
+	}
+	return EXIT_SUCCESS;
+}
 
 int bateau (char tableau[10][10], int taille, int aleatoire) {
 	/*fonction qui place les bateaux aléatoirement, pas oublier de verif pas de superposition et dépassement tableaux, pas dépassement du tableau vérification inhérente*/
 	int valeur_depart1, valeur_depart2;
 	short i, orientation;
+	do {
 	srand(time(NULL)+aleatoire);
 	valeur_depart1=rand()%(10-taille);
     srand(time(NULL)+1+aleatoire);
@@ -20,19 +39,20 @@ int bateau (char tableau[10][10], int taille, int aleatoire) {
 	orientation=(rand()%2);
 	if (orientation==1) {
 		for (i = 0; i < taille; i++) {
-			tableau [valeur_depart2][valeur_depart1+i]='x'; /*vers le bas*/
+			tableau [valeur_depart2][valeur_depart1+i]=BATEAU_NON_TOUCHE; /*vers la droite*/
 		}
 		}
 	else {
 		for (i = 0; i < taille; i++) {
-			tableau [valeur_depart1+i][valeur_depart2]='x'; /*vers le haut*/
+			tableau [valeur_depart1+i][valeur_depart2]=BATEAU_NON_TOUCHE; /*vers le bas*/
 		}
 		}
+	} while(0==1);
 	return EXIT_SUCCESS;
 }
 
 
-int initialisation (char tableau[10][10], int alea) { // fonction qui gère le placement des bateaux aléatoirement
+int initialisation (char tableau[10][10], int alea) { /* fonction qui gère le placement des bateaux aléatoirement*/
 	short i;
 	for (i=0;i<NOMBRE_PORTE_AVIONS;i++) {
 		bateau(tableau, 5, (time(NULL)%42)*alea);
@@ -53,7 +73,7 @@ int verif (char tableau[10][10], int *statut) {
 	short presence_x=0, i, j;
 	for (i=0;i<10;i++) {
 		for (j=0;j<10;j++) {
-			if (tableau[i][j]=='x') {
+			if (tableau[i][j]==BATEAU_NON_TOUCHE) {
 				presence_x =1;
 			}
 		}
