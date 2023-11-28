@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "bataille_navale_h.h"
+#include "header.h"
+
 
 int aide () {
 	printf("\tJeu de Bataille Navale.\n");

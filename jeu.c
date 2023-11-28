@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "bataille_navale_h.h"
+#include "header.h"
 
 
 #include <time.h>

@@ -2,7 +2,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "bataille_navale_h.h"
+#include "header.h"
+#include "jeu.h"
+#include "ui.h"
 
 int analyse_arg(int nb, char** val, short* ordinateur, short* positionnement) {
 	short i;

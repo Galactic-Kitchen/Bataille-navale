@@ -7,11 +7,11 @@ FLAG_DEBUG =
 FLAG_LST_FCT = -aux-info $@_debug_info.txt 
 NAME_DEBUG = debug_info.txt
 
-${NAME}.exe : master.o jeu.o ui.o bataille_navale_h.h
+${NAME}.exe : master.o jeu.o ui.o
 	${CC} ${FLAG_DEBUG} ${FLAGS_ANSI} ${FLAGS_NAME} $@ $^
 
-%.o : %.c
-	${CC} ${FLAG_DEBUG} ${FLAGS_ANSI} ${FLAGS_NAME} $@ $^
+%.o : %.c %.h header.h
+	${CC} ${FLAG_DEBUG} ${FLAGS_ANSI} ${FLAGS_OBJ} $<
 	
 run :
 	./${NAME}.exe
