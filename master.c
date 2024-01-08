@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "header.h"
+#include "master.h"
 #include "jeu.h"
 #include "ui.h"
 
@@ -25,7 +26,70 @@ int analyse_arg(int nb, char** val, short* ordinateur, short* positionnement) {
 	return EXIT_SUCCESS;
 }
 
-void quitter (void) {
+FILE * chargement_fichier(void) {
+	FILE * fichier=NULL;
+	fichier = fopen("fichier_score.txt", "r");
+	if (fichier==NULL) {
+		fichier=fopen("fichier_score", "w");
+		fprintf(fichier, "Tableau des scores : \n");
+	}
+	return fichier;
+}
+
+void chargement_profil (profil* profil1, profil* profil2, FILE* fichier) {
+	int sortie=0;
+	char* pseudo1;
+	char* pseudo2;
+	char* temp[20];
+	if (fichier==NULL) {
+		return EXIT_FAILURE;
+	}
+	pseudo1= (char*) malloc(20*sizeof (char));
+	pseudo2= (char*) malloc(20*sizeof (char));
+	demande_pseudo(1, pseudo1);
+	if (strlen(*pseudo1) >20 || *pseudo1==' ') {
+		printf("Vraiment ?");
+	}
+	fseek(fichier, (long) sizeof "Tableau des scores : \n", SEEK_SET);
+	while (feof(fichier)==1 && sortie==1) {
+		sortie=fscanf(fichier, "%s", temp);
+		if (strcmp(temp, pseudo1)==0) {
+			fscanf(fichier, "%i", profil1->nb_parties);
+			fscanf(fichier, "%i", profil1->nb_victoires);
+			sortie=0;
+		}
+		fseek(fichier, 11L, SEEK_CUR);
+	}
+	if (sortie==0) {
+		*profil1=nv_profile();
+	}
+	demande_pseudo(2, pseudo2);
+	if (strlen(*pseudo2) >20 || *pseudo2==' ') {
+		printf("Vraiment ?");
+	}
+	fseek(fichier, (long) sizeof "Tableau des scores : \n", SEEK_SET);
+	while (feof(fichier)==1 && sortie==1) {
+		sortie=fscanf(fichier, "%s", temp);
+		if (strcmp(temp, pseudo2)==0) {
+			fscanf(fichier, "%i", profil2->nb_parties);
+			fscanf(fichier, "%i", profil2->nb_victoires);
+			sortie=0;
+		}
+		fseek(fichier, 11L, SEEK_CUR);
+	}
+	if (sortie==0) {
+		*profil2=nv_profile();
+	}
+
+}
+
+profil nv_profile(void) {
+	profil profile_j = {0,0};
+	return profile_j;
+}
+
+void quitter (FILE * fichier) {
+	fclose(fichier);
 	exit(EXIT_SUCCESS);
 }
 
@@ -123,10 +187,15 @@ int jeu (int ennemi, int position) {
 
 int main (int argc, char** argv) {
    /* char colonne_entree, ligne_entree; dans fonction jeu pr optimiser */
+	FILE* fichier_score=NULL;
 	char statut;
 	short ordi=0, position_manuelle=0;
+	profil* profil1;
+	profil* profil2;
 	int compteur_partie=0, compteur_victoire=0; /*compteur_partie - compteur_victoire = compteur joueur 2*/
 	analyse_arg(argc, argv, &ordi, &position_manuelle);
+	fichier_score=chargement_fichier();
+	chargement_profil(profil1, profil2, fichier_score);
 	nouvelle_partie_question(&statut); /*lancement programme*/
 	for (;statut!='\0';) {
 		if (statut=='a') {
@@ -134,7 +203,7 @@ int main (int argc, char** argv) {
 			
 		}
 		else if (statut=='q') {
-			quitter();
+			statut='\0';
 		}
 		else if (statut=='o') {
 			changement_options(&ordi, &position_manuelle);
@@ -145,5 +214,6 @@ int main (int argc, char** argv) {
 		}
 		nouvelle_partie_question(&statut);
 	}
+	quitter(fichier_score);
     return EXIT_SUCCESS;
 }

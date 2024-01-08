@@ -13,6 +13,13 @@ int aide () {
 	printf("-i/--ia & -e/--ennemi : permet de choisir de jouer contre un algorithme ou contre un ami (amitié optionnelle)(pas encore implémenté)\n");
 	return EXIT_SUCCESS;
 }
+
+int demande_pseudo (int nombre, char* renvoi) {
+	printf("Quel est le pseudo du profil n°%d?", nombre);
+	return scanf("%20s", *renvoi);
+	/*they called me a madman*/
+}
+
 int print_victoire(int nb) {
 	printf("Le joueur %d a gagné cette partie\n",nb);
 	return EXIT_SUCCESS;

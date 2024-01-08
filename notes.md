@@ -75,3 +75,5 @@ remplacer return exit failure par exit(code) et définir des codes d'erreur / fa
 améliorer makefile
 finir implémentation debug makefile avec -aux-info fichier pour liste des fonctions
 ajouter ifnotdef dans header
+faire refonte des header et du makefile en conséquent
+implémenter système de profils basé sur du xml/json à déterminer
